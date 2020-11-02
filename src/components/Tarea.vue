@@ -15,6 +15,8 @@
                             </div>
                         </div>
                         <br>
+                        <h5 v-if="listTareas.length == 0">No hay tareas para realizar</h5>
+
                         <ul class="list-group">
                             <li v-for="(tarea, index) of listTareas" :key="index"
                                  class="list-group-item d-flex justify-content-between">
@@ -22,7 +24,7 @@
                                     <i class="far fa-circle"></i>
                                 </span>
                                 {{ tarea.nombre }}
-                                <span class="text-danger cursor">
+                                <span class="text-danger cursor" v-on:click="eliminarTarea(index)">
                                     <i class="fas fa-trash-alt"></i>
                                 </span>
                             </li>
@@ -51,6 +53,9 @@
                 }
                 this.listTareas.push(tarea);
                 this.tarea = '';
+            },
+            eliminarTarea(index) {
+                this.listTareas.splice(index, 1)
             }
         }
     }
