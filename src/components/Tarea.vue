@@ -12,6 +12,18 @@
                                 <button class="btn btn-success btn-lg">Agregar</button>
                             </div>
                         </div>
+                        <br>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="cursor">
+                                    <i class="far fa-circle"></i>
+                                </span>
+                                Hacer la tarea
+                                <span class="text-danger cursor">
+                                    <i class="fas fa-trash-alt"></i>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -26,5 +38,7 @@
 </script>
 
 <style scoped>
-
+.cursor {
+    cursor: pointer;
+}
 </style>
