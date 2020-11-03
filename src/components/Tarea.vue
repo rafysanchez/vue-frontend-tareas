@@ -43,7 +43,7 @@
                 <span
                   class="cursor"
                   v-bind:class="{ 'text-success': tarea.estado }"
-                  v-on:click="editarTarea(tarea, index)"
+                  v-on:click="editarTarea(tarea, tarea.id)"
                 >
                   <i
                     v-bind:class="[
@@ -115,14 +115,21 @@ export default {
           this.loading = false;
         });
     },
-    editarTarea(tarea, index) {
-      this.listTareas[index].estado = !tarea.estado;
+    editarTarea(tarea, id) {
+     /*  this.listTareas[index].estado = !tarea.estado; */
+     this.loading = true;
+     axios.put("https://localhost:44314/api/Tarea/"+ id, tarea).then(()=> {
+       this.obtenerTareas();
+       this.loading = false
+     }).catch(() => this.loading = false);
     },
     obtenerTareas() {
+      this.loading = true;
       axios.get("https://localhost:44314/api/Tarea").then((response) => {
         console.log(response);
         this.listTareas = response.data;
-      });
+        this.loading = false;
+      }).catch(() => this.loading = false);
     },
   },
   created: function () {
