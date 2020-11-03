@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
     export default {
         name: 'Tarea',
         data() {
@@ -60,7 +62,16 @@
             },
             editarTarea(tarea, index) {
                 this.listTareas[index].estado = !tarea.estado
+            },
+            obtenerTareas() {
+                axios.get("https://localhost:44314/api/Tarea").then(response => {
+                    console.log(response);
+                    this.listTareas = response.data;
+                })
             }
+        },
+        created: function() {
+            this.obtenerTareas();
         }
     }
 </script>
